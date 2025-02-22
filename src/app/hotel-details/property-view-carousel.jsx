@@ -1,8 +1,27 @@
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
 import React from 'react'
 
-const PropertyViewCarousel = () => {
+const PropertyViewCarousel = ({images}) => {
   return (
-    <div>PropertyViewCarousel</div>
+    <section>
+        <Carousel 
+            opts= {{
+                breakpoints: {
+                    '(min-width:1024px)': {slidesToScroll:2},
+                },
+            }}
+            className="overflow-hidden rounded-lg">
+            <CarouselContent className="-ml-0.5">
+                {images.map((image, index) => (
+                    <CarouselItem key={index} className="lg:basis-1/2 pl-0.5">
+                        <img className='h-96 w-full object-cover' src={image} alt={`Image index: ${index}`} />
+                    </CarouselItem>
+                ))};
+            </CarouselContent>
+            <CarouselPrevious className="left-1 shadow-lg"/>
+            <CarouselNext className="right-1 shadow-lg" />
+        </Carousel>
+    </section>
   )
 }
 
