@@ -14,12 +14,12 @@ const HotelDetails = () => {
             <PropertyViewCarousel images ={hotelData.hotel.photos}/>
             <div className='flex gap-6 mt-6'>
                 <div className='flex-1 space-y-8'>
-                    <HotelMetaDetails hotel={hotelData}/>
-                    <HotelRoomsPicker />
-                    <HotelPolicy />
+                    <HotelMetaDetails hotel={hotelData.hotel} info={hotelInfo}/>
+                    <HotelRoomsPicker rooms = {hotelData.rooms}/>
+                    <HotelPolicy hotelPolicy={hotelInfo.hotelPolicy}/>
                 </div>
-                <aside className='w-[340px] shrink-0 border border-border shadow-md rounded-xl'>
-                    <HotelCheckoutCard />
+                <aside className='w-[340px] shrink-0 border border-border shadow-md rounded-xl sticky top-6 h-min'>
+                    <HotelCheckoutCard rooms={hotelData.rooms} cancellationPolicy={hotelInfo.cancellationPolicy}/>
                 </aside>
                 
             </div>
