@@ -94,3 +94,10 @@ body {
     scrollbar-color: var(--primary) var(--brand-color);
   }
 }
+
+
+button,
+a,
+[role='button'] {
+  @apply select-none cursor-pointer;
+}
