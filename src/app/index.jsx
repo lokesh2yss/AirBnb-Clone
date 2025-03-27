@@ -5,11 +5,13 @@ import Footer from '@/components/layouts/footer.layout'
 import HotelDetails from './hotel-details'
 import { SignInPage } from './auth'
 import { SignUpPage } from './auth'
+import SearchPage from './search'
 const App = () => {
   return (
     <div>
         <Header/>
-        <Home/>
+        {/* <Home/> */}
+        <SearchPage />
         {/* <HotelDetails /> */}
         {/* <AuthPage /> */}
         {/* <SignInPage /> */}

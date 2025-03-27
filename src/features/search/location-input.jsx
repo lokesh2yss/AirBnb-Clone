@@ -21,6 +21,17 @@ const LocationInput = ({ form }) => {
     setIsPopOverOpen(false)
   }
 
+  function handleKeyDown(e) {
+    switch(e.key) {
+      case 'ArrowUp':
+        console.log("UP");
+        break;
+      case 'ArrowDown':
+        console.log("Down");
+        break;
+    }
+  }
+
   return (
     <Popover open={isPopOverOpen} onOpenChange={setIsPopOverOpen}>
       <PopoverTrigger asChild>
@@ -42,7 +53,6 @@ const LocationInput = ({ form }) => {
                   placeholder="Where are you going?"
                   autoComplete="off"
                   onKeyDown={handleKeyDown}
-                  onKeyUp={handleKeyUp}
                 />
               </FormControl>
             )}
