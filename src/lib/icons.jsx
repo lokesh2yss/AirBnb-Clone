@@ -1,5 +1,6 @@
 import {
   Bed,
+  CalendarClock,
   CalendarDays,
   CarFront,
   CarTaxiFront,
@@ -11,6 +12,7 @@ import {
   Gem,
   Heart,
   Info,
+  LogOutIcon,
   MapPin,
   Minus,
   Plane,
@@ -100,4 +102,6 @@ export default {
   dropdown: ChevronDown,
   minus: Minus,
   plus: Plus,
+  bookingHistory: CalendarClock,
+  logout: LogOutIcon,
 };
