@@ -11,20 +11,13 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
+import { Link } from 'react-router';
+import { PATHS } from '@/config/path.config';
+import { useSignInForm } from './hooks/use-sign-in-form';
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const form = useForm({
-    defaultValues: {
-      email: '',
-      password: '',
-    },
-  });
-
-  const onSubmit = (data) => {
-    console.log('Got the data...', data);
-  };
-
+  const { form, handleSignInSubmit, pending } = useSignInForm();
   const handleHidePassword = (e) => {
     e.preventDefault();
     setShowPassword((prev) => !prev);
@@ -33,7 +26,7 @@ const SignIn = () => {
     <>
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit(onSubmit)}
+          onSubmit={form.handleSubmit(handleSignInSubmit)}
           className="w-full mt-8 space-y-5">
           <FormField
             control={form.control}
@@ -55,13 +48,15 @@ const SignIn = () => {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <div className='flex items-center justify-between'>
+                  <div className="flex items-center justify-between">
                     <Input
                       type={showPassword ? 'text' : 'password'}
                       {...field}
                       className="h-10 rounded flex-1"
                     />
-                    <Button type="button" onClick={(e) => handleHidePassword(e)}>
+                    <Button
+                      type="button"
+                      onClick={(e) => handleHidePassword(e)}>
                       <Icon icon="eye" />
                     </Button>
                   </div>
@@ -72,6 +67,7 @@ const SignIn = () => {
           />
           <Button
             type="submit"
+            disabled={pending}
             className="w-full h-10"
             aria-label="Login to your Account">
             Log in
@@ -80,10 +76,10 @@ const SignIn = () => {
       </Form>
       <div className="flex items-center justify-center mt-6">
         <span className="text-sm">
-          Don't have an account? {/* TODO: replace with Link */}
-          <a className="text-primary hover:underline" href="">
+          Don't have an account?{' '}
+          <Link to={PATHS.SIGN_UP} className="text-primary hover:underline">
             Create Account
-          </a>
+          </Link>
         </span>
       </div>
     </>

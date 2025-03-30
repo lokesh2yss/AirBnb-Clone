@@ -10,24 +10,18 @@ import { Input } from '@/components/ui/input';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router';
+import { PATHS } from '@/config/path.config';
+import { useSignUpForm } from './hooks/use-sign-up-form';
 
 const SignUp = () => {
-  const form = useForm({
-    defaultValues: {
-      name: '',
-      email: '',
-      password: '',
-    },
-  });
+  const { form, handleSignUpSubmit, pending } = useSignUpForm();
 
-  const onSubmit = (data) => {
-    console.log('Got the data...', data);
-  };
   return (
     <>
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit(onSubmit)}
+          onSubmit={form.handleSubmit(handleSignUpSubmit)}
           className="w-full mt-8 space-y-5">
           <FormField
             control={form.control}
@@ -69,6 +63,7 @@ const SignUp = () => {
             )}
           />
           <Button
+            disabled={pending}
             type="submit"
             className="w-full h-10"
             aria-label="Create a new Account">
@@ -78,10 +73,10 @@ const SignUp = () => {
       </Form>
       <div className="flex items-center justify-center mt-6">
         <span className="text-sm">
-          Already have an account? {/* TODO: replace with Link */}
-          <a className="text-primary hover:underline" href="">
+          Already have an account?{' '}
+          <Link to={PATHS.SIGN_IN} className="text-primary hover:underline">
             Sign in
-          </a>
+          </Link>
         </span>
       </div>
     </>
