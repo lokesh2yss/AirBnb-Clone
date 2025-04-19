@@ -17,6 +17,7 @@ import {
   Minus,
   Plane,
   Plus,
+  ShieldCheck,
   Star,
   User2,
   X,
@@ -104,4 +105,5 @@ export default {
   plus: Plus,
   bookingHistory: CalendarClock,
   logout: LogOutIcon,
+  shield: ShieldCheck,
 };
