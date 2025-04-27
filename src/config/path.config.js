@@ -1,5 +1,4 @@
 const PATHS = {
-
   LANDING: '/',
 
   SIGN_IN: '/signin',
@@ -11,7 +10,14 @@ const PATHS = {
   PROFILE: '/me/profile',
   BOOKING_HISTORY: '/me/booking-history',
 
-  CHECKOUT: '/hotels/:id/checkout'
-}
+  CHECKOUT: '/hotels/:id/checkout',
+  PAYMENTS_STATUS: '/payments/:bookingId/status',
 
-export {PATHS};
+  SETTINGS: {
+    PROFILE: '/me/profile',
+    BOOKING_HISTORY: '/me/booking-history',
+    TRAVELERS_MANAGEMENT: '/me/travelers',
+  },
+};
+
+export { PATHS };

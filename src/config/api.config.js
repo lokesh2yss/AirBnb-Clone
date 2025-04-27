@@ -12,6 +12,7 @@ const API_CONFIG = {
   },
   USER: {
     PROFILE: '/users/profile',
+    BOOKING_HISTORY: '/users/myBookings',
   },
   BOOKING: {
     INIT_BOOKING: {
@@ -21,6 +22,10 @@ const API_CONFIG = {
     ADD_GUEST: {
       METHOD: 'POST',
       URL: (bookingId) => `/bookings/${bookingId}/addGuests`,
+    },
+    REMOVE_GUEST: {
+      METHOD: 'POST',
+      URL: (bookingId) => `/bookings/${bookingId}/removeGuests`,
     },
     PAYMENT_BOOKING: {
       METHOD: 'POST',
@@ -33,6 +38,21 @@ const API_CONFIG = {
     CANCEL_BOOKING: {
       METHOD: 'POST',
       URL: (bookingId) => `/bookings/${bookingId}/cancel`,
+    },
+  },
+  TRAVELLER: {
+    GET_TRAVELLERS: '/users/guests',
+    ADD_TRAVELLER: {
+      METHOD: 'POST',
+      URL: '/users/guests',
+    },
+    UPDATE_TRAVELLER: {
+      METHOD: 'PUT',
+      URL: (guestId) => `/users/guests/${guestId}`,
+    },
+    DELETE_TRAVELLER: {
+      METHOD: 'DELETE',
+      URL: (guestId) => `/users/guests/${guestId}`,
     },
   },
 };

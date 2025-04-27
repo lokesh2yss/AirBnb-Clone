@@ -27,7 +27,6 @@ export const SERVICE_LIST = [
   },
 ];
 
-
 export const TRENDING_DESTINATIONS = [
   {
     title: 'New Delhi',
@@ -113,7 +112,6 @@ export const FOOTER_SECTION = [
   },
 ];
 
-
 export const SOCIAL_LINKS = [
   { icon: 'pinterest', href: '#', title: 'Pinterest' },
   { icon: 'twitter', href: '#', title: 'Twitter' },
@@ -131,7 +129,7 @@ export const DESTINATIONS = [
   { city: 'Bangalore', country: 'India' },
   { city: 'Hyderabad', country: 'India' },
   { city: 'Chennai', country: 'India' },
-  { city: 'Pune', country: 'India' }
+  { city: 'Pune', country: 'India' },
 ];
 
 export const SEARCH_RESULT_PAGE_LIMIT = 2;
@@ -222,3 +220,28 @@ export const PRICE_FILTERS = [
     value: '2000-2500',
   },
 ];
+
+export const HOTEL_TIMINGS = {
+  CHECKIN: '12:00 PM',
+  CHECKOUT: '11:00 AM',
+};
+
+export const ERROR_FALLBACK = {
+  TITLE: 'Internal Server Error',
+  DESCRIPTION: 'Something went wrong. Please try again later.',
+};
+
+export const bookingStatusVariant = {
+  CONFIRMED: {
+    className: 'border-green-600 bg-green-100 text-green-600',
+    text: 'Completed',
+  },
+  CANCELLED: {
+    className: 'border-red-600 bg-red-100 text-red-600',
+    text: 'Cancelled',
+  },
+  PAYMENTS_PENDING: {
+    className: 'border-amber-600 bg-amber-100 text-amber-600',
+    text: 'Pending',
+  },
+};

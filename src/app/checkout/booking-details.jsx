@@ -1,17 +1,16 @@
 import Icon from '@/components/ui/icon';
 import { Separator } from '@/components/ui/separator';
 import dayjs from 'dayjs';
-import React from 'react'
+import React from 'react';
+import CheckoutGuests from './guests/checkout-guests';
 
 const BookingDetails = ({ booking }) => {
-
- const checkInDate = dayjs(booking.checkInDate)
-   .format('ddd DD MMM YYYY')
-   ?.split?.(' ');
- const checkOutDate = dayjs(booking.checkOutDate)
-   .format('ddd DD MMM YYYY')
-   ?.split?.(' ');
-
+  const checkInDate = dayjs(booking.checkInDate)
+    .format('ddd DD MMM YYYY')
+    ?.split?.(' ');
+  const checkOutDate = dayjs(booking.checkOutDate)
+    .format('ddd DD MMM YYYY')
+    ?.split?.(' ');
 
   return (
     <section className="space-y-4">
@@ -88,6 +87,7 @@ const BookingDetails = ({ booking }) => {
         </div>
       </div>
       <Separator />
+      <CheckoutGuests guests={booking.guests || []} bookingId={booking.id} />
       <div className="px-4 space-y-4">
         <div className="flex items-center justify-between">
           <span className="text-sm font-medium">Total Price</span>
@@ -98,4 +98,4 @@ const BookingDetails = ({ booking }) => {
   );
 };
 
-export default BookingDetails
+export default BookingDetails;

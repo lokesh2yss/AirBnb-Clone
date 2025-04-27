@@ -1,6 +1,6 @@
-import { SEARCH_PARAMS_KEYS } from "@/config/app.config";
-import { clsx } from "clsx";
-import { twMerge } from "tailwind-merge"
+import { SEARCH_PARAMS_KEYS } from '@/config/app.config';
+import { clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs) {
   return twMerge(clsx(inputs));
@@ -15,3 +15,7 @@ export const getEncodedRedirectUrl = (next) => {
     next || '/'
   )}`;
 };
+
+export function getDefaultProfile(initials) {
+  return `https://api.dicebear.com/9.x/initials/svg?seed=${initials}`;
+}
