@@ -4,6 +4,7 @@ import { getEncodedRedirectUrl } from '@/lib/utils';
 import React from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router';
 import useQuery from '../hooks/useQuery';
+import { AppLoader } from '@/components/ui/loader';
 
 const AuthContext = React.createContext({
   isAuthenticated: false,
@@ -15,9 +16,12 @@ const WithAuthProvider = () => {
   const { authenticatedUser, authChecked } = useAuthContext();
 
   if (!authChecked) {
-    return <p>Loading...</p>;
+    return <AppLoader />;
   }
 
+  if (!authenticatedUser.user) {
+    return <AppLoader />;
+  }
   if (!authenticatedUser.isAuthenticated) {
     const redirectUrl = `${location.pathname}${location.search}`;
     return (

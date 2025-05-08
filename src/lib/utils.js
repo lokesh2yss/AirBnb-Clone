@@ -19,3 +19,5 @@ export const getEncodedRedirectUrl = (next) => {
 export function getDefaultProfile(initials) {
   return `https://api.dicebear.com/9.x/initials/svg?seed=${initials}`;
 }
+
+export const isAdmin = (user) => user.roles.includes('HOTEL_MANAGER');

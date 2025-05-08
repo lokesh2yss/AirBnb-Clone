@@ -1,8 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
 import Home from './home';
-import Header from '@/components/layouts/header.layout';
-import Footer from '@/components/layouts/footer.layout';
 import SearchPage from './search';
 import HotelDetails from './hotel-details';
 import { SignInPage, SignUpPage } from './auth';
@@ -15,40 +13,83 @@ import SettingsLayout from './settings/settings-layout';
 import Profile from './settings/profile';
 import BookingHistory from './settings/booking-history';
 import TravellersManagement from './settings/travellers';
+import RegularUserLayout from '@/components/layouts/regular-user-layout';
+import { WithAdminProvider } from '@/lib/providers/admin-context-provider';
+import Hotels from './admin/hotels';
+import CreateHotel from './admin/create-hotels';
+import Admin from './admin';
+import AdminLayout from '@/components/layouts/admin.layout';
+import Bookings from './admin/bookings';
+import Rooms from './admin/rooms';
+import Overview from './admin/overview';
+import EditHotel from './admin/edit-hotel';
 
 const Router = () => {
   return (
     <BrowserRouter>
-      <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route element={<RegularUserLayout />}>
+          <Route index path="/" element={<Home />} />
 
-        <Route element={<WithSearchLayout />}>
-          <Route path={PATHS.SEARCH} element={<SearchPage />} />
-          <Route path={PATHS.HOTEL} element={<HotelDetails />} />
+          <Route element={<WithSearchLayout />}>
+            <Route path={PATHS.SEARCH} element={<SearchPage />} />
+            <Route path={PATHS.HOTEL} element={<HotelDetails />} />
+          </Route>
+
+          <Route path={PATHS.SIGN_IN} element={<SignInPage />} />
+          <Route path={PATHS.SIGN_UP} element={<SignUpPage />} />
+
+          <Route element={<WithAuthProvider />}>
+            <Route path={PATHS.CHECKOUT} element={<CheckoutPage />} />
+            <Route path={PATHS.PAYMENTS_STATUS} element={<PaymentStatus />} />
+
+            <Route element={<SettingsLayout />}>
+              <Route path={PATHS.SETTINGS.PROFILE} element={<Profile />} />
+              <Route
+                path={PATHS.SETTINGS.BOOKING_HISTORY}
+                element={<BookingHistory />}
+              />
+              <Route
+                path={PATHS.SETTINGS.TRAVELERS_MANAGEMENT}
+                element={<TravellersManagement />}
+              />
+            </Route>
+          </Route>
         </Route>
-
-        <Route path={PATHS.SIGN_IN} element={<SignInPage />} />
-        <Route path={PATHS.SIGN_UP} element={<SignUpPage />} />
-
         <Route element={<WithAuthProvider />}>
-          <Route path={PATHS.CHECKOUT} element={<CheckoutPage />} />
-          <Route path={PATHS.PAYMENTS_STATUS} element={<PaymentStatus />} />
-
-          <Route element={<SettingsLayout />}>
-            <Route path={PATHS.SETTINGS.PROFILE} element={<Profile />} />
-            <Route
-              path={PATHS.SETTINGS.BOOKING_HISTORY}
-              element={<BookingHistory />}
-            />
-            <Route
-              path={PATHS.SETTINGS.TRAVELERS_MANAGEMENT}
-              element={<TravellersManagement />}
-            />
+          <Route element={<WithAdminProvider />}>
+            <Route path={PATHS.ADMIN.LIST_HOTELS} element={<Admin />}>
+              <Route index element={<Hotels />} />
+              <Route
+                path={PATHS.ADMIN.CREATE_HOTEL}
+                element={<CreateHotel />}
+              />
+            </Route>
+            <Route path={PATHS.ADMIN.DASHBOARD.ROOT} element={<AdminLayout />}>
+              <Route
+                index
+                element={<Navigate to={PATHS.ADMIN.DASHBOARD.OVERVIEW} />}
+              />
+              <Route
+                path={PATHS.ADMIN.DASHBOARD.OVERVIEW}
+                element={<Overview />}
+              />
+              <Route
+                path={PATHS.ADMIN.DASHBOARD.BOOKINGS}
+                element={<Bookings />}
+              />
+              <Route
+                path={PATHS.ADMIN.DASHBOARD.ROOMS.ROOT}
+                element={<Rooms />}
+              />
+              <Route
+                path={PATHS.ADMIN.DASHBOARD.EDIT_HOTEL}
+                element={<EditHotel />}
+              />
+            </Route>
           </Route>
         </Route>
       </Routes>
-      <Footer />
     </BrowserRouter>
   );
 };
