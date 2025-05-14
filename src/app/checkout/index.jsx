@@ -3,6 +3,8 @@ import useInitCheckout from './hooks/use-init-checkout';
 import { Separator } from '@/components/ui/separator';
 import BookingDetails from './booking-details';
 import InitiatePaymentsButton from './init-payments-button';
+import { LoadingSpinner } from '@/components/ui/loader';
+import ApiError from '@/components/api-error';
 
 const CheckoutPage = () => {
   const { data, pending, error } = useInitCheckout();
@@ -10,11 +12,11 @@ const CheckoutPage = () => {
   console.log(error);
 
   if (pending) {
-    return <p>Loading...</p>;
+    return <LoadingSpinner containerClassName="min-h-[calc(100vh-120px)]" />;
   }
 
   if (error) {
-    return <p>Error: {error}</p>;
+    return <ApiError errorMessage={error} className="h-[calc(100vh-124px)]" />;
   }
 
   return (

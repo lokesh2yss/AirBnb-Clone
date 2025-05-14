@@ -7,6 +7,7 @@ import {
   CarTaxiFront,
   Check,
   ChevronDown,
+  ChevronLeft,
   CircleCheck,
   DoorOpen,
   Dot,
@@ -138,4 +139,5 @@ export default {
   hotel: Hotel,
   addImage: ImagePlus,
   spinner: Loader2,
+  leftArrow: ChevronLeft,
 };

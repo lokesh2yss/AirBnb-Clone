@@ -3,11 +3,13 @@ import { Separator } from '@/components/ui/separator';
 import React from 'react';
 import CoTravellerInfo from './traveler-card';
 import { useTravelerContext } from '@/lib/providers/travelers-context';
+import { LoadingSpinner } from '@/components/ui/loader';
 
 const TravelersManagement = () => {
   const { travelers, pending } = useTravelerContext();
 
-  if (pending) return <p>Loading...</p>;
+  if (pending)
+    return <LoadingSpinner containerClassName="min-h-[calc(100vh-120px)]" />;
   return (
     <section>
       <div className="flex items-center justify-between">

@@ -2,10 +2,12 @@ import React from 'react';
 import BookingCard from './booking-card';
 import { Separator } from '@/components/ui/separator';
 import useGetBookingHistory from './use-get-booking-history';
+import { LoadingSpinner } from '@/components/ui/loader';
 
 const BookingHistory = () => {
   const { data, error, pending } = useGetBookingHistory();
-  if (pending) return <p>Loading...</p>;
+  if (pending)
+    return <LoadingSpinner containerClassName="min-h-[calc(100vh-120px)]" />;
   return (
     <section>
       <div className="space-y-0.5">
